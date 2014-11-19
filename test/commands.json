@@ -1,0 +1,6 @@
+[
+  [ null,   "logger1",  "node", "-e", "setTimeout(function () { console.log('I exit (code = 0) just after my work, but master won\\'t care') }, 100)" ],
+  [ true,   "required", "node", "-e", "setTimeout(function () { console.log('I die (code ≠ 0) in 200 ms and that will kill master'); setTimeout(process.exit.bind(process, 14), 2000) }, 200)" ],
+  [ false,  "ignored",  "node", "-e", "setTimeout(function () { console.log('I die (code ≠ 0) in 150 ms seconds but matster won\\'t care'); setTimeout(process.exit.bind(process, 16), 1500) }, 300)" ],
+  [ null,   "logger2",  "node", "-e", "setTimeout(function () { console.log('I die (code = 0) in 250 ms but I\\'ll be killed first'); setTimeout(process.exit.bind(process, 0), 2500) }, 400)" ]
+]

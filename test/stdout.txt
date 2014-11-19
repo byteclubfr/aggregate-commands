@@ -1,0 +1,5 @@
+****-**-** **:**:** [logger1 ] I exit (code = 0) just after my work, but master won't care
+****-**-** **:**:** [logger1 ] Terminated with code 0
+****-**-** **:**:** [required] I die (code ≠ 0) in 200 ms and that will kill master
+****-**-** **:**:** [ignored ] I die (code ≠ 0) in 150 ms seconds but matster won't care
+****-**-** **:**:** [logger2 ] I die (code = 0) in 250 ms but I'll be killed first

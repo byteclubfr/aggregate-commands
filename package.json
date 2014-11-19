@@ -1,0 +1,22 @@
+{
+  "name": "aggregate-commands",
+  "version": "1.0.0",
+  "description": "Run a bunch of commands in a single process and log them apart",
+  "main": "index.js",
+  "bin": {
+    "aggregate-commands": "bin/aggregate-commands"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lmtm/aggregate-commands.git"
+  },
+  "author": "Nicolas Chambrier <naholyr@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lmtm/aggregate-commands/issues"
+  },
+  "homepage": "https://github.com/lmtm/aggregate-commands"
+}
