@@ -144,7 +144,11 @@ function main (file) {
   try {
     commands = require(path.resolve(file));
   } catch (e) {
-    error("Could not find config file '" + file + "'", 2);
+    if (e.code === "ENOENT") {
+      error("Could not find config file '" + file + "'", 2);
+    } else {
+      error("Failed loading config file '" + file + "' (" + String(e) + ")", 2);
+    }
   }
 
   // Check commands
