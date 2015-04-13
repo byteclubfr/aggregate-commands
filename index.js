@@ -135,14 +135,26 @@ function error (str, code) {
   process.exit(code || 1);
 }
 
-// Load commands
-function main (file) {
+// Attempt to read aggregate-commands key from package.json
+function getCommandsFromPackage (key) {
+  key = path.basename(key);
+  var pkg;
+
+  try {
+    pkg = require(path.resolve("package.json"));
+    return pkg["aggregate-commands"][key];
+  } catch (e) {
+    // no explicit error to allow fallback on config file
+    return null;
+  }
+}
+
+function getCommandsFromConfigFile (file) {
   if (!file.match(/\./)) {
     file += ".json";
   }
-  var commands;
   try {
-    commands = require(path.resolve(file));
+    return require(path.resolve(file));
   } catch (e) {
     if (e.code === "ENOENT") {
       error("Could not find config file '" + file + "'", 2);
@@ -150,17 +162,27 @@ function main (file) {
       error("Failed loading config file '" + file + "' (" + String(e) + ")", 2);
     }
   }
+}
+
+// Load commands
+function main (file) {
+
+  // Read from package.json then fallback on dedicated file
+  var commands = getCommandsFromPackage(file);
+  if (!commands) {
+    commands = getCommandsFromConfigFile(file);
+  }
 
   // Check commands
   if (!Array.isArray(commands)) {
-    error("Invalid config file: array expected");
+    error("Invalid config : array expected");
   }
   commands.forEach(function (command, i) {
     if (!Array.isArray(command)) {
-      error("Invalid config file (item #" + i + "): array expected");
+      error("Invalid config (item #" + i + "): array expected");
     }
     if (command.length < 2) {
-      error("Invalid config file (item #" + i + "): at least 2 elements expected");
+      error("Invalid config (item #" + i + "): at least 2 elements expected");
     }
   });
 

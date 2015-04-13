@@ -1,7 +1,7 @@
 aggregate-commands
 ==================
 
-Run a bunch of commands in a single process and log them apart. It has been essentially developed for being used in a npm script, instead of `command1 & command2 & command 3`.
+Run a bunch of commands in a single process and log them apart. It has been essentially developed for being used in a [npm script](https://docs.npmjs.com/misc/scripts), instead of `command1 & command2 & command 3`.
 
 Globally
 --------
@@ -17,6 +17,14 @@ Usage
 ```sh
 aggregate-commands /path/to/commands-file.json
 ```
+
+or
+
+```sh
+aggregate-commands key
+```
+
+where key is declared in a `aggregate-commands` object of `package.json`
 
 In a npm script
 ---------------

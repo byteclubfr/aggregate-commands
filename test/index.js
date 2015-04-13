@@ -25,11 +25,22 @@ function compare (stream, expected) {
   });
 }
 
+// read from dedicated file
 var proc = spawn("node", [path.resolve("../bin/aggregate-commands"), "./commands"]);
 
 compare(proc.stdout, expected_out);
 compare(proc.stderr, expected_err);
 
 proc.on("exit", function (code) {
+  assert.equal(code, 5, "should exit with code 5");
+});
+
+// read from aggregate-commands key in package.json
+var proc2 = spawn("node", [path.resolve("../bin/aggregate-commands"), "./commands2"]);
+
+compare(proc2.stdout, expected_out);
+compare(proc2.stderr, expected_err);
+
+proc2.on("exit", function (code) {
   assert.equal(code, 5, "should exit with code 5");
 });
