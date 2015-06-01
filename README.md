@@ -45,10 +45,10 @@ Use in a script (in your `package.json`)
 }
 ```
 
-Commands file format
---------------------
+Commands format
+---------------
 
-The command file is an array of commands, a command being itself an array with following elements:
+The command file is an array of commands (JS or JSON), a command being itself an array with following elements:
 
 * (optional) is the command required?
   * `true` the master will exit as soon as this command dies (normally or not)
@@ -85,6 +85,22 @@ This sample command file will produce following output:
 
 Note: You can declare your commands file as JSON (`.json`) or plain Node module (`.js`, don't forget `module.exports = …`) if you want to add comments
 
+### Declare commands in package.json
+
+If you don't want to use a separate file, you can embed your commands descriptor in `package.json` under the `aggregate-commands` key:
+
+```json
+{
+  "aggregate-commands": {
+    "my-commands": [
+      Your commands go here
+    ]
+  }
+}
+```
+
+Simply run `aggregate-commands my-commands` and it will use this configuration.
+
 Why not using simply "command1 & command2"?
 -------------------------------------------
 
@@ -110,16 +126,13 @@ Your `package.json`:
     "watch-templates": "the script that watches and compiles your HTML templates",
     "watch-js": "the watchify command building your JS",
     "watch": "aggregate-commands watch"
+  },
+  "aggregate-commands": {
+    "watch": [
+      ["css",  "npm", "run", "watch-css"],
+      ["tpls", "npm", "run", "watch-templates"],
+      ["js",   "npm", "run", "watch-js"]
+    ]
   }
 }
-```
-
-Your `watch.json`:
-
-```json
-[
-  ["css",  "npm", "run", "watch-css"],
-  ["tpls", "npm", "run", "watch-templates"],
-  ["js",   "npm", "run", "watch-js"]
-]
 ```
