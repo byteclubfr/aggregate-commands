@@ -1,6 +1,6 @@
 {
   "name": "aggregate-commands",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Run a bunch of commands in a single process and log them apart",
   "main": "index.js",
   "bin": {
