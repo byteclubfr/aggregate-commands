@@ -1,4 +1,4 @@
 ****-**-** **:**:** [ignored ] Terminated with code 16
 ****-**-** **:**:** [required] Terminated with code 14
 ****-**-** **:**:** Terminated by previous command, killing remaining processes…
-****-**-** **:**:** [logger2 ] Killed with signal 'SIGTERM'
+****-**-** **:**:** [logger2 ] Terminated with code 143

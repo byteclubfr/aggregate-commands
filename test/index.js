@@ -5,11 +5,13 @@ var spawn = require("child_process").spawn;
 var assert = require("assert");
 var fs = require("fs");
 
+var isLegacy = (process.version < 'v0.11.0')
+
 
 process.chdir(path.dirname(__filename));
 
 var expected_out = fs.readFileSync("./stdout.txt", "utf8").trim();
-var expected_err = fs.readFileSync("./stderr.txt", "utf8").trim();
+var expected_err = fs.readFileSync(isLegacy ? "./stderr-legacy.txt" : "./stderr.txt", "utf8").trim();
 
 function prepare (output) {
   return output.trim().replace(/^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}/gm, "****-**-** **:**:**");
