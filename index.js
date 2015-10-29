@@ -149,6 +149,7 @@ function getCommandsFromPackage (key) {
   }
 }
 
+// Grab from external configuration file
 function getCommandsFromConfigFile (file) {
   if (!file.match(/\./)) {
     file += ".json";
@@ -164,6 +165,19 @@ function getCommandsFromConfigFile (file) {
   }
 }
 
+// Convert commands format
+// from { label: "the command" } or { label: ["the", "command"] }
+// into [ label, "the", "command" ]
+function buildCommandsFromObject (commands) {
+  return Object.keys(commands).map(function (key) {
+    var command = commands[key];
+    if (!Array.isArray(command)) {
+      command = command.split(/\s+/);
+    }
+    return [key].concat(command);
+  });
+}
+
 // Load commands
 function main (file) {
 
@@ -174,6 +188,9 @@ function main (file) {
   }
 
   // Check commands
+  if (typeof commands === "object") {
+    commands = buildCommandsFromObject(commands);
+  }
   if (!Array.isArray(commands)) {
     error("Invalid config : array expected");
   }
