@@ -1,0 +1,3 @@
+****-**-** **:**:** [fail] Terminated with code 1
+****-**-** **:**:** Terminated by previous command, killing remaining processes…
+****-**-** **:**:** [two ] Killed with signal 'SIGTERM'

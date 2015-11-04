@@ -188,7 +188,7 @@ function main (file) {
   }
 
   // Check commands
-  if (typeof commands === "object") {
+  if (!Array.isArray(commands) && typeof commands === "object") {
     commands = buildCommandsFromObject(commands);
   }
   if (!Array.isArray(commands)) {
