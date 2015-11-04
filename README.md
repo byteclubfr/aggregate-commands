@@ -162,3 +162,7 @@ Your `package.json`:
 
 * Some tools could disable colors because of no ``tty``, if they don't provide an options to force them, well that sucks
 * Tools run this way cannot read stdin (i.e. you can't type ``rs`` to restart your server using ``nodemon``)
+
+## Alternatives
+
+* [npm-run-all](https://github.com/mysticatea/npm-run-all) is more focused as it runs only npm scripts, which may be just perfect for your needs
